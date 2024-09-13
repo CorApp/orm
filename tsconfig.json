@@ -3,7 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@configs/*": ["src/configs/*"]
+      "@configs/*": ["src/configs/*"],
+      "@db/*": ["src/db/*"]
     },
     "lib": ["ESNext", "DOM"],
     "target": "ESNext",
