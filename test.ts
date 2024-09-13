@@ -1,5 +1,5 @@
-import db from "@/db";
-import { users } from "@db/schema";
+import db from "./index";
+import { users } from "@/schema";
 
 // Insert
 await db.insert(users).values({
