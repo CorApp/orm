@@ -1,0 +1,14 @@
+{
+  "name": "corapp-orm",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prettier": "3.3.3",
+    "typescript": "^5.0.0"
+  }
+}
