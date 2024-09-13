@@ -1,14 +1,27 @@
 {
   "name": "corapp-orm",
+  "version": "1.0.0",
   "module": "index.ts",
   "type": "module",
+  "private": true,
   "scripts": {
     "build": "tsc",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "drizzle-kit": "^0.24.2",
     "prettier": "3.3.3",
     "typescript": "^5.0.0"
+  },
+  "author": "CarmeloCampos",
+  "dependencies": {
+    "@libsql/client": "^0.10.0",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.33.0",
+    "zod": "^3.23.8"
   }
 }
