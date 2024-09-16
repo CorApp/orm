@@ -1,5 +1,6 @@
 import { sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { v4 } from "uuid";
+import users from "@/db/users";
 
 export const countries = sqliteTable("countries", {
   id: text("id").primaryKey().unique().$default(v4),
@@ -39,6 +40,9 @@ const stands = sqliteTable("stands", {
   id: text("id").primaryKey().unique().$default(v4),
   name: text("name").notNull(),
   code: text("code").notNull().unique(),
+  seller_id: text("seller_id")
+    .notNull()
+    .references(() => users.id),
   warehouse_id: text("warehouse_id")
     .notNull()
     .references(() => warehouses.id),

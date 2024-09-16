@@ -1,6 +1,7 @@
 CREATE TABLE `categories` (
 	`id` text PRIMARY KEY NOT NULL,
-	`name` text NOT NULL
+	`name` text NOT NULL,
+	`img` text NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE `cities` (
@@ -40,7 +41,8 @@ CREATE TABLE `orders` (
 --> statement-breakpoint
 CREATE TABLE `posts` (
 	`id` text PRIMARY KEY NOT NULL,
-	`prince` numeric NOT NULL,
+	`price` numeric NOT NULL,
+	`title` text NOT NULL,
 	`description` text NOT NULL,
 	`min` numeric DEFAULT '0' NOT NULL,
 	`wholesale` numeric DEFAULT '0' NOT NULL,
@@ -89,7 +91,9 @@ CREATE TABLE `stands` (
 	`id` text PRIMARY KEY NOT NULL,
 	`name` text NOT NULL,
 	`code` text NOT NULL,
+	`seller_id` text NOT NULL,
 	`warehouse_id` text NOT NULL,
+	FOREIGN KEY (`seller_id`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`warehouse_id`) REFERENCES `warehouses`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint

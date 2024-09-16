@@ -1,23 +1,232 @@
 import db from "./src";
 import { eq } from "drizzle-orm";
-import { DOCUMENT_TYPES, document_types, roles, USER_ROLES } from "@/db/users";
+import users, { DOCUMENT_TYPES, USER_ROLES } from "@/db/users";
+import { schemas } from "@/index";
 
-USER_ROLES.forEach(async (role) => {
+for (const role of USER_ROLES) {
   const existRole = await db.query.roles.findFirst({
-    where: eq(roles.name, role),
+    where: eq(schemas.roles.name, role),
   });
 
   if (!existRole) {
-    await db.insert(roles).values({ name: role });
+    await db.insert(schemas.roles).values({ name: role });
   }
-});
+}
 
-DOCUMENT_TYPES.forEach(async (document) => {
+for (const document of DOCUMENT_TYPES) {
   const existDocument = await db.query.document_types.findFirst({
-    where: eq(document_types.name, document),
+    where: eq(schemas.document_types.name, document),
   });
 
   if (!existDocument) {
-    await db.insert(document_types).values({ name: document });
+    await db.insert(schemas.document_types).values({ name: document });
   }
+}
+
+const seedEmail: string = "carmelo@etlgr.com";
+let userExist = await db.query.users.findFirst({
+  where: eq(users.email, seedEmail),
 });
+
+if (!userExist) {
+  const roleAdmin = await db.query.roles.findFirst({
+    where: eq(schemas.roles.name, "admin"),
+  });
+
+  const findPPId = await db.query.document_types.findFirst({
+    where: eq(schemas.document_types.name, DOCUMENT_TYPES[3]),
+  });
+
+  await db.insert(users).values({
+    name: "Carmelo Campos",
+    phone: "573225956284",
+    email: seedEmail,
+    password: "123456",
+    salt: "asdasdasd",
+    role_id: roleAdmin!.id!.toString(),
+    document_type_id: findPPId!.id!.toString(),
+    document: "147267474",
+  });
+
+  userExist = await db.query.users.findFirst({
+    where: eq(users.email, seedEmail),
+  });
+}
+
+const countryName = "Colombia";
+let country = await db.query.countries.findFirst({
+  where: eq(schemas.countries.name, countryName),
+});
+
+if (!country) {
+  await db.insert(schemas.countries).values({ name: countryName });
+  country = await db.query.countries.findFirst({
+    where: eq(schemas.countries.name, countryName),
+  });
+}
+
+const cityName = "Tunja";
+let city = await db.query.cities.findFirst({
+  where: eq(schemas.cities.name, cityName),
+});
+
+if (!city) {
+  await db.insert(schemas.cities).values({
+    name: cityName,
+    code: Date.now().toString(),
+    country_id: country!.id!.toString(),
+  });
+
+  city = await db.query.cities.findFirst({
+    where: eq(schemas.cities.name, cityName),
+  });
+}
+
+const namePlaza = "Plaza mercado del sur";
+let square = await db.query.squares.findFirst({
+  where: eq(schemas.squares.name, namePlaza),
+});
+
+if (!square) {
+  await db.insert(schemas.squares).values({
+    name: namePlaza,
+    city_id: city!.id!.toString(),
+  });
+  square = await db.query.squares.findFirst({
+    where: eq(schemas.squares.name, namePlaza),
+  });
+}
+
+const nameWarehouse = "Bodega 1";
+let warehouse = await db.query.warehouses.findFirst({
+  where: eq(schemas.warehouses.name, nameWarehouse),
+});
+
+if (!warehouse) {
+  await db.insert(schemas.warehouses).values({
+    name: nameWarehouse,
+    code: Date.now().toString(),
+    square_id: square!.id!.toString(),
+  });
+  warehouse = await db.query.warehouses.findFirst({
+    where: eq(schemas.warehouses.name, nameWarehouse),
+  });
+}
+
+const nameStand = "Puesto 1";
+let stand = await db.query.stands.findFirst({
+  where: eq(schemas.stands.name, nameStand),
+});
+
+if (!stand) {
+  await db.insert(schemas.stands).values({
+    name: nameStand,
+    code: Date.now().toString(),
+    seller_id: userExist!.id!.toString(),
+    warehouse_id: warehouse!.id!.toString(),
+  });
+
+  stand = await db.query.stands.findFirst({
+    where: eq(schemas.stands.name, nameStand),
+  });
+}
+
+const nameCategory = "Frutas";
+let category = await db.query.categories.findFirst({
+  where: eq(schemas.categories.name, nameCategory),
+});
+
+if (!category) {
+  await db.insert(schemas.categories).values({
+    name: nameCategory,
+    img: "https://via.placeholder.com/300",
+  });
+  category = await db.query.categories.findFirst({
+    where: eq(schemas.categories.name, nameCategory),
+  });
+}
+
+const nameProduct = "Banano";
+let product = await db.query.products.findFirst({
+  where: eq(schemas.products.name, nameProduct),
+});
+
+if (!product) {
+  await db.insert(schemas.products).values({
+    name: nameProduct,
+    photo: "https://via.placeholder.com/400",
+    code: Date.now().toString(),
+    category_id: category!.id!.toString(),
+  });
+  product = await db.query.products.findFirst({
+    where: eq(schemas.products.name, nameProduct),
+  });
+}
+
+const nameDimension = "Caja 1 kg";
+let dimension = await db.query.dimensions.findFirst({
+  where: eq(schemas.dimensions.name, nameDimension),
+});
+
+if (!dimension) {
+  await db.insert(schemas.dimensions).values({
+    name: nameDimension,
+    height: "10",
+    width: "10",
+    length: "10",
+  });
+  dimension = await db.query.dimensions.findFirst({
+    where: eq(schemas.dimensions.name, nameDimension),
+  });
+}
+
+const nameUdm = "KILO";
+let udm = await db.query.udms.findFirst({
+  where: eq(schemas.udms.name, nameUdm),
+});
+
+if (!udm) {
+  await db.insert(schemas.udms).values({
+    name: nameUdm,
+    weight: "1",
+    dimension_id: dimension!.id!.toString(),
+  });
+  udm = await db.query.udms.findFirst({
+    where: eq(schemas.udms.name, nameUdm),
+  });
+}
+
+const namePost = "Post 1";
+let post = await db.query.posts.findFirst({
+  where: eq(schemas.posts.title, namePost),
+});
+
+const nameQuality = "Buena";
+let quality = await db.query.qualities.findFirst({
+  where: eq(schemas.qualities.name, nameQuality),
+});
+
+if (!quality) {
+  await db.insert(schemas.qualities).values({ name: nameQuality });
+  quality = await db.query.qualities.findFirst({
+    where: eq(schemas.qualities.name, nameQuality),
+  });
+}
+
+if (!post) {
+  await db.insert(schemas.posts).values({
+    price: "1000",
+    title: namePost,
+    description: "Descripcion del post",
+    min: "1",
+    wholesale: "0",
+    seller_id: userExist!.id!.toString(),
+    udm_id: udm!.id!.toString(),
+    quality_id: quality!.id!.toString(),
+    product_id: product!.id!.toString(),
+    stand_id: stand!.id!.toString(),
+  });
+  post = await db.query.posts.findFirst({
+    where: eq(schemas.posts.title, namePost),
+  });
+}
