@@ -10,3 +10,4 @@ const turso = createClient({
 
 const db = drizzle(turso, { schema: { users, roles, document_types } });
 export default db;
+export * from "@/db";
