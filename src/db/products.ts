@@ -4,6 +4,7 @@ import { v4 } from "uuid";
 export const categories = sqliteTable("categories", {
   id: text("id").primaryKey().unique().$default(v4),
   name: text("name").notNull().unique(),
+  img: text("img").notNull(),
 });
 
 const products = sqliteTable("products", {

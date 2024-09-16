@@ -1,0 +1,1 @@
+ALTER TABLE `categories` ADD `img` text NOT NULL;
