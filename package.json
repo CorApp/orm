@@ -1,5 +1,5 @@
 {
-  "name": "corapp-orm",
+  "name": "@CorApp/orm",
   "description": "ORM for the database in TursoTech Drizzle",
   "version": "1.2.0",
   "type": "module",
