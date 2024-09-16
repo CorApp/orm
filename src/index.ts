@@ -11,5 +11,4 @@ const turso = createClient({
 
 const db = drizzle(turso, { schema: schemas });
 export default db;
-export { schemas };
-export { orm };
+export { schemas, orm };
