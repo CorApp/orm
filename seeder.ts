@@ -225,6 +225,8 @@ if (!post) {
     quality_id: quality!.id!.toString(),
     product_id: product!.id!.toString(),
     stand_id: stand!.id!.toString(),
+    published: "1",
+    updated: "1",
   });
   post = await db.query.posts.findFirst({
     where: eq(schemas.posts.title, namePost),
