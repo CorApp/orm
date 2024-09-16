@@ -1,4 +1,4 @@
-import db from "./index";
+import db from "./src";
 import { eq } from "drizzle-orm";
 import { DOCUMENT_TYPES, document_types, roles, USER_ROLES } from "@/db/users";
 
