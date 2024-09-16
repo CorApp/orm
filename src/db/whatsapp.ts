@@ -1,6 +1,6 @@
 import { numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { v4 } from "uuid";
-import { users } from "@/db";
+import users from "@/db/users";
 
 const whatsapp = sqliteTable("whatsapp", {
   id: text("id").primaryKey().unique().$default(v4),

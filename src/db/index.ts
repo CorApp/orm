@@ -4,6 +4,7 @@ import stands, { cities, countries, squares, warehouses } from "@/db/stands";
 import posts, { qualities } from "@/db/posts";
 import products, { categories } from "@/db/products";
 import whatsapp from "@/db/whatsapp";
+import orders from "@/db/orders";
 
 export {
   // User
@@ -27,4 +28,6 @@ export {
   // Post
   posts,
   qualities,
+  // Order
+  orders,
 };

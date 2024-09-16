@@ -1,7 +1,6 @@
 import db from "./index";
 import { eq } from "drizzle-orm";
-import roles, { USER_ROLES } from "@/db/roles";
-import document_types, { DOCUMENT_TYPES } from "@/db/document_types";
+import { DOCUMENT_TYPES, document_types, roles, USER_ROLES } from "@/db/users";
 
 USER_ROLES.forEach(async (role) => {
   const existRole = await db.query.roles.findFirst({

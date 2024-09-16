@@ -29,6 +29,15 @@ CREATE TABLE `document_types` (
 	`name` text NOT NULL
 );
 --> statement-breakpoint
+CREATE TABLE `orders` (
+	`id` text PRIMARY KEY NOT NULL,
+	`buyer_id` text NOT NULL,
+	`post_id` text NOT NULL,
+	`quantity` numeric DEFAULT '1' NOT NULL,
+	FOREIGN KEY (`buyer_id`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action,
+	FOREIGN KEY (`post_id`) REFERENCES `posts`(`id`) ON UPDATE no action ON DELETE no action
+);
+--> statement-breakpoint
 CREATE TABLE `posts` (
 	`id` text PRIMARY KEY NOT NULL,
 	`prince` numeric NOT NULL,
@@ -132,6 +141,7 @@ CREATE UNIQUE INDEX `countries_name_unique` ON `countries` (`name`);--> statemen
 CREATE UNIQUE INDEX `dimensions_id_unique` ON `dimensions` (`id`);--> statement-breakpoint
 CREATE UNIQUE INDEX `document_types_id_unique` ON `document_types` (`id`);--> statement-breakpoint
 CREATE UNIQUE INDEX `document_types_name_unique` ON `document_types` (`name`);--> statement-breakpoint
+CREATE UNIQUE INDEX `orders_id_unique` ON `orders` (`id`);--> statement-breakpoint
 CREATE UNIQUE INDEX `posts_id_unique` ON `posts` (`id`);--> statement-breakpoint
 CREATE UNIQUE INDEX `products_id_unique` ON `products` (`id`);--> statement-breakpoint
 CREATE UNIQUE INDEX `products_code_unique` ON `products` (`code`);--> statement-breakpoint
