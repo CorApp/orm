@@ -13,8 +13,6 @@ export const qualities = sqliteTable("qualities", {
 const posts = sqliteTable("posts", {
   id: text("id").primaryKey().unique().$default(v4),
   price: numeric("price").notNull(),
-  title: text("title").notNull(),
-  description: text("description").notNull(),
   min: numeric("min").notNull().default("0"),
   wholesale: numeric("wholesale").notNull().default("0"),
   seller_id: text("seller_id")
