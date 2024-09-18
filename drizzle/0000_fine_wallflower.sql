@@ -1,5 +1,6 @@
 CREATE TABLE `categories` (
 	`id` text PRIMARY KEY NOT NULL,
+	`slug` text NOT NULL,
 	`name` text NOT NULL,
 	`img` text NOT NULL
 );
@@ -137,7 +138,7 @@ CREATE TABLE `whatsapp` (
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `categories_id_unique` ON `categories` (`id`);--> statement-breakpoint
-CREATE UNIQUE INDEX `categories_name_unique` ON `categories` (`name`);--> statement-breakpoint
+CREATE UNIQUE INDEX `categories_slug_unique` ON `categories` (`slug`);--> statement-breakpoint
 CREATE UNIQUE INDEX `cities_id_unique` ON `cities` (`id`);--> statement-breakpoint
 CREATE UNIQUE INDEX `cities_code_unique` ON `cities` (`code`);--> statement-breakpoint
 CREATE UNIQUE INDEX `countries_id_unique` ON `countries` (`id`);--> statement-breakpoint

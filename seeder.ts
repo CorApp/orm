@@ -138,6 +138,7 @@ let category = await db.query.categories.findFirst({
 
 if (!category) {
   await db.insert(schemas.categories).values({
+    slug: "frutas",
     name: nameCategory,
     img: "https://via.placeholder.com/300",
   });

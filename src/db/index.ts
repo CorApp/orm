@@ -31,3 +31,5 @@ export {
   // Order
   orders,
 };
+
+export * from "@/db/relations";

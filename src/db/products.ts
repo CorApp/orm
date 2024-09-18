@@ -3,7 +3,8 @@ import { v4 } from "uuid";
 
 export const categories = sqliteTable("categories", {
   id: text("id").primaryKey().unique().$default(v4),
-  name: text("name").notNull().unique(),
+  slug: text("slug").notNull().unique(),
+  name: text("name").notNull(),
   img: text("img").notNull(),
 });
 
