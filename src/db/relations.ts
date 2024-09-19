@@ -2,7 +2,7 @@ import { relations } from "drizzle-orm";
 import products, { categories } from "@/db/products";
 import users from "@/db/users";
 import udms from "@/db/udms";
-import stands from "@/db/stands";
+import stands, { warehouses } from "@/db/stands";
 import posts, { qualities } from "@/db/posts";
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
@@ -36,5 +36,12 @@ export const postsRelations = relations(posts, ({ one }) => ({
   stand: one(stands, {
     fields: [posts.stand_id],
     references: [stands.id],
+  }),
+}));
+
+export const standsRelations = relations(stands, ({ one }) => ({
+  warehouse: one(warehouses, {
+    fields: [stands.warehouse_id],
+    references: [warehouses.id],
   }),
 }));
