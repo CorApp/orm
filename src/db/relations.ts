@@ -45,3 +45,7 @@ export const standsRelations = relations(stands, ({ one }) => ({
     references: [warehouses.id],
   }),
 }));
+
+export const warehousesRelations = relations(warehouses, ({ many }) => ({
+  stands: many(stands),
+}));
