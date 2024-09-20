@@ -1,15 +1,22 @@
 {
   "name": "@corapp/orm",
   "description": "ORM for the database in TursoTech Drizzle",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "type": "module",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
-    ".": {
+    "node": {
+      "module": "./dist/index.js",
       "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs"
+    },
+    "default": "./dist/index.js"
   },
   "engines": {
     "node": "20"
