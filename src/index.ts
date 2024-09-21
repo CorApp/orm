@@ -1,11 +1,11 @@
 import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
-import envParser from "@/configs/env-parser";
+import { envSchema } from "@/configs/env-parser";
 import * as schemas from "@/db";
 import * as orm from "drizzle-orm";
 
-export default function dbInit(envInit: NodeJS.ProcessEnv) {
-  const env = envParser(envInit);
+export default function dbInit(envInit: object) {
+  const env = envSchema.parse(envInit);
 
   const turso = createClient({
     url: env.TURSO_DATABASE_URL,
