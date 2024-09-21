@@ -197,11 +197,6 @@ if (!udm) {
   });
 }
 
-const namePost = "Post 1";
-let post = await db.query.posts.findFirst({
-  where: eq(schemas.posts.title, namePost),
-});
-
 const nameQuality = "Buena";
 let quality = await db.query.qualities.findFirst({
   where: eq(schemas.qualities.name, nameQuality),
@@ -214,11 +209,14 @@ if (!quality) {
   });
 }
 
+const pricePost = "1000";
+let post = await db.query.posts.findFirst({
+  where: eq(schemas.posts.price, pricePost),
+});
+
 if (!post) {
   await db.insert(schemas.posts).values({
     price: "1000",
-    title: namePost,
-    description: "Descripcion del post",
     min: "1",
     wholesale: "0",
     seller_id: userExist!.id!.toString(),
@@ -230,6 +228,6 @@ if (!post) {
     updated: "1",
   });
   post = await db.query.posts.findFirst({
-    where: eq(schemas.posts.title, namePost),
+    where: eq(schemas.posts.price, pricePost),
   });
 }
