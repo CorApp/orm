@@ -1,8 +1,8 @@
-import db from "./src";
 import { eq } from "drizzle-orm";
 import users, { DOCUMENT_TYPES, USER_ROLES } from "@/db/users";
-import { schemas } from "@/index";
+import dbInit, { schemas } from "@/index";
 
+const db = dbInit(process.env);
 for (const role of USER_ROLES) {
   const existRole = await db.query.roles.findFirst({
     where: eq(schemas.roles.name, role),

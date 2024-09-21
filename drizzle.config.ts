@@ -1,6 +1,7 @@
 import type { Config } from "drizzle-kit";
-import env from "@/configs/env";
+import envParser from "./src/configs/env-parser";
 
+const env = envParser(process.env);
 export default {
   schema: "src/db",
   dialect: "sqlite",

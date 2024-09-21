@@ -1,5 +1,6 @@
-import db from "@/index";
+import dbInit from "@/index";
 
+const db = dbInit(process.env);
 const posts = await db.query.products.findMany({
   with: {
     category: true,
