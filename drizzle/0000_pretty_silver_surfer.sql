@@ -43,8 +43,6 @@ CREATE TABLE `orders` (
 CREATE TABLE `posts` (
 	`id` text PRIMARY KEY NOT NULL,
 	`price` numeric NOT NULL,
-	`title` text NOT NULL,
-	`description` text NOT NULL,
 	`min` numeric DEFAULT '0' NOT NULL,
 	`wholesale` numeric DEFAULT '0' NOT NULL,
 	`seller_id` text NOT NULL,

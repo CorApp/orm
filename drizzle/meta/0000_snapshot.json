@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "d917416f-cb30-492b-a884-77ed9ef05833",
+  "id": "7df91275-ca83-4323-afb8-150c9ecf37c5",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "categories": {
@@ -336,20 +336,6 @@
         "price": {
           "name": "price",
           "type": "numeric",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "title": {
-          "name": "title",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "description": {
-          "name": "description",
-          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
