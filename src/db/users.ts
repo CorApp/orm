@@ -32,7 +32,6 @@ const users = sqliteTable("users", {
   phone: text("phone").notNull().unique(),
   email: text("email").notNull().unique(),
   password: text("password").notNull(),
-  salt: text("salt").notNull(),
   role_id: text("role_id")
     .notNull()
     .references(() => roles.id),
