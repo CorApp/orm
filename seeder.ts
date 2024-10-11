@@ -42,7 +42,6 @@ if (!userExist) {
     phone: "573225956284",
     email: seedEmail,
     password: "123456",
-    salt: "asdasdasd",
     role_id: roleAdmin!.id!.toString(),
     document_type_id: findPPId!.id!.toString(),
     document: "147267474",
