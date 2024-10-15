@@ -1,10 +1,9 @@
 import { numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
-import { v4 } from "uuid";
 import posts from "@/db/posts";
 import users from "@/db/users";
 
 const orders = sqliteTable("orders", {
-  id: text("id").primaryKey().unique().$default(v4),
+  id: text("id"),
   buyer_id: text("buyer_id")
     .notNull()
     .references(() => users.id),
