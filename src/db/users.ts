@@ -1,7 +1,7 @@
 import { sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { v4 } from "uuid";
 
-export const DOCUMENT_TYPES: DocumentTypes[] = ["CC", "CE", "NIT", "PP"];
+export const DOCUMENT_TYPES: DocumentTypes[] = ["CC", "CE", "NIT", "PP", "PPT"];
 export const USER_ROLES: UserRole[] = [
   "admin",
   "buyer",
