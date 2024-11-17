@@ -7,12 +7,12 @@ export const dimensions = sqliteTable("dimensions", {
   height: numeric("height").notNull(),
   width: numeric("width").notNull(),
   length: numeric("length").notNull(),
+  weight: numeric("weight").notNull(),
 });
 
 const udms = sqliteTable("udms", {
   id: text("id").primaryKey().unique().$default(v4),
   name: text("name").notNull(),
-  weight: numeric("weight").notNull(),
   dimension_id: text("dimension_id")
     .notNull()
     .references(() => dimensions.id),
