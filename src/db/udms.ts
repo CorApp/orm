@@ -7,7 +7,7 @@ export const dimensions = sqliteTable("dimensions", {
   height: numeric("height").notNull(),
   width: numeric("width").notNull(),
   length: numeric("length").notNull(),
-  weight: numeric("weight").notNull(),
+  weight: numeric("weight").notNull().default("1"),
 });
 
 const udms = sqliteTable("udms", {

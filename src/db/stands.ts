@@ -10,7 +10,6 @@ export const countries = sqliteTable("countries", {
 export const cities = sqliteTable("cities", {
   id: text("id").primaryKey().unique().$default(v4),
   name: text("name").notNull(),
-  code: text("code").notNull().unique(),
   country_id: text("country_id")
     .notNull()
     .references(() => countries.id),
