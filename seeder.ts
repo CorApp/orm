@@ -72,7 +72,6 @@ let city = await db.query.cities.findFirst({
 if (!city) {
   await db.insert(schemas.cities).values({
     name: cityName,
-    code: Date.now().toString(),
     country_id: country!.id!.toString(),
   });
 
@@ -163,24 +162,7 @@ if (!product) {
   });
 }
 
-const nameDimension = "Caja 1 kg";
-let dimension = await db.query.dimensions.findFirst({
-  where: eq(schemas.dimensions.name, nameDimension),
-});
-
-if (!dimension) {
-  await db.insert(schemas.dimensions).values({
-    name: nameDimension,
-    height: "10",
-    width: "10",
-    length: "10",
-  });
-  dimension = await db.query.dimensions.findFirst({
-    where: eq(schemas.dimensions.name, nameDimension),
-  });
-}
-
-const nameUdm = "KILO";
+const nameUdm = "Caja de Kilo";
 let udm = await db.query.udms.findFirst({
   where: eq(schemas.udms.name, nameUdm),
 });
@@ -189,7 +171,9 @@ if (!udm) {
   await db.insert(schemas.udms).values({
     name: nameUdm,
     weight: "1",
-    dimension_id: dimension!.id!.toString(),
+    height: "10",
+    width: "10",
+    length: "10",
   });
   udm = await db.query.udms.findFirst({
     where: eq(schemas.udms.name, nameUdm),

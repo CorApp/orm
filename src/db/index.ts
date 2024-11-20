@@ -1,5 +1,5 @@
 import users, { document_types, roles } from "@/db/users";
-import udms, { dimensions } from "@/db/udms";
+import udms from "@/db/udms";
 import stands, { cities, countries, squares, warehouses } from "@/db/stands";
 import posts, { qualities } from "@/db/posts";
 import products, { categories } from "@/db/products";
@@ -15,7 +15,6 @@ export {
   whatsapp,
   // UDM
   udms,
-  dimensions,
   // Stand
   stands,
   cities,
