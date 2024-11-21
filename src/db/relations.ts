@@ -1,9 +1,9 @@
 import { relations } from "drizzle-orm";
 import products, { categories } from "@/db/products";
 import users, { document_types, roles } from "@/db/users";
-import udms from "@/db/udms";
+import udms, { qualities } from "@/db/udms";
 import stands, { warehouses } from "@/db/stands";
-import posts, { qualities } from "@/db/posts";
+import posts from "@/db/posts";
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
   products: many(products),

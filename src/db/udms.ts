@@ -10,4 +10,9 @@ const udms = sqliteTable("udms", {
   weight: numeric("weight").notNull().default("1"),
 });
 
+export const qualities = sqliteTable("qualities", {
+  id: text("id").primaryKey().unique().$default(v4),
+  name: text("name").notNull(),
+});
+
 export default udms;

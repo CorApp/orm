@@ -1,13 +1,16 @@
 import { numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { v4 } from "uuid";
-import udms from "@/db/udms";
+import udms, { qualities } from "@/db/udms";
 import products from "@/db/products";
 import stands from "@/db/stands";
 import users from "@/db/users";
 
-export const qualities = sqliteTable("qualities", {
+export const post_prices = sqliteTable("post_prices", {
   id: text("id").primaryKey().unique().$default(v4),
-  name: text("name").notNull(),
+  post_id: text("post_id")
+    .notNull()
+    .references(() => posts.id),
+  price: numeric("price").notNull(),
 });
 
 const posts = sqliteTable("posts", {
@@ -33,6 +36,12 @@ const posts = sqliteTable("posts", {
     .references(() => stands.id),
   published: numeric("published").notNull().default("0"),
   updated: numeric("updated").notNull().default("0"),
+  created: text("created")
+    .notNull()
+    .$default(() => new Date().toISOString()),
+  deleted: text("deleted", { enum: ["0", "1"] })
+    .notNull()
+    .default("0"),
 });
 
 export default posts;

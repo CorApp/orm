@@ -1,16 +1,42 @@
-import { numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
-import posts from "@/db/posts";
+import { sqliteTable, text } from "drizzle-orm/sqlite-core";
 import users from "@/db/users";
+import posts from "@/db/posts";
+import { v4 } from "uuid";
+
+export const DELIVERY_METHODS: DeliveryMethod[] = ["pickup", "delivery"];
+export const PAYMENT_METHODS: PaymentMethod[] = ["cash", "online"];
+export const ORDER_STATUSES: StatusOrder[] = [
+  "awaiting_confirmation",
+  "awaiting_payment",
+  "paid",
+];
 
 const orders = sqliteTable("orders", {
-  id: text("id"),
+  id: text("id").primaryKey().unique().$default(v4),
   buyer_id: text("buyer_id")
     .notNull()
     .references(() => users.id),
+  delivery: text("delivery", {
+    enum: ["pickup", ...DELIVERY_METHODS],
+  }).notNull(),
+  payment: text("payment", { enum: ["cash", ...PAYMENT_METHODS] }).notNull(),
+  status: text("status", { enum: ["paid", ...ORDER_STATUSES] }).notNull(),
+  extra: text("extra"),
+  created: text("created")
+    .notNull()
+    .$default(() => new Date().toISOString()),
+});
+
+export const order_items = sqliteTable("order_items", {
+  id: text("id").primaryKey().unique().$default(v4),
+  order_id: text("order_id")
+    .notNull()
+    .references(() => orders.id),
   post_id: text("post_id")
     .notNull()
     .references(() => posts.id),
-  quantity: numeric("quantity").notNull().default("1"),
+  quantity: text("quantity").notNull(),
+  price: text("price").notNull(),
 });
 
 export default orders;

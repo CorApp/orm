@@ -39,6 +39,9 @@ const users = sqliteTable("users", {
   document_type_id: text("document_type_id")
     .notNull()
     .references(() => document_types.id),
+  created: text("created")
+    .notNull()
+    .$default(() => new Date().toISOString()),
 });
 
 export default users;
