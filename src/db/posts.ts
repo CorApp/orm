@@ -39,9 +39,7 @@ const posts = sqliteTable("posts", {
   created: text("created")
     .notNull()
     .$default(() => new Date().toISOString()),
-  deleted: text("deleted", { enum: ["0", "1"] })
-    .notNull()
-    .default("0"),
+  deleted: numeric("deleted").notNull().default("0"),
 });
 
 export default posts;
