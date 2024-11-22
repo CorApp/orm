@@ -9,7 +9,7 @@ const whatsapp = sqliteTable("whatsapp", {
     .unique()
     .references(() => users.id),
   status: text("status").notNull().default("unstarted"),
-  temp: text("temp"),
+  temp: text("temp").notNull().default(JSON.stringify({})),
 });
 
 export default whatsapp;
