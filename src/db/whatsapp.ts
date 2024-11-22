@@ -1,4 +1,4 @@
-import { numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { v4 } from "uuid";
 import users from "@/db/users";
 
@@ -8,7 +8,6 @@ const whatsapp = sqliteTable("whatsapp", {
     .notNull()
     .unique()
     .references(() => users.id),
-  enabled: numeric("enabled").notNull().default("0"),
   status: text("status").notNull().default("unstarted"),
   temp: text("temp"),
 });
