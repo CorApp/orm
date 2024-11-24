@@ -1,4 +1,4 @@
-import { sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import users from "@/db/users";
 import posts from "@/db/posts";
 import { v4 } from "uuid";
@@ -20,6 +20,7 @@ const orders = sqliteTable("orders", {
     enum: ["pickup", ...DELIVERY_METHODS],
   }).notNull(),
   payment: text("payment", { enum: ["cash", ...PAYMENT_METHODS] }).notNull(),
+  paid: numeric("paid").notNull().default("0"),
   status: text("status", { enum: ["paid", ...ORDER_STATUSES] }).notNull(),
   extra: text("extra").notNull().default(JSON.stringify({})),
   created: text("created")
