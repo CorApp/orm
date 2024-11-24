@@ -21,7 +21,7 @@ const orders = sqliteTable("orders", {
   }).notNull(),
   payment: text("payment", { enum: ["cash", ...PAYMENT_METHODS] }).notNull(),
   status: text("status", { enum: ["paid", ...ORDER_STATUSES] }).notNull(),
-  extra: text("extra"),
+  extra: text("extra").notNull().default(JSON.stringify({})),
   created: text("created")
     .notNull()
     .$default(() => new Date().toISOString()),
