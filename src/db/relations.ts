@@ -5,7 +5,6 @@ import udms, { qualities } from "@/db/udms";
 import stands, { cities, countries, squares, warehouses } from "@/db/stands";
 import posts from "@/db/posts";
 import orders, { order_items } from "@/db/orders";
-import whatsapp from "@/db/whatsapp";
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
   products: many(products),
@@ -83,10 +82,6 @@ export const usersRelations = relations(users, ({ one }) => ({
     fields: [users.document_type_id],
     references: [document_types.id],
   }),
-  whatsapp: one(whatsapp, {
-    fields: [users.id],
-    references: [whatsapp.user_id],
-  }),
 }));
 
 export const ordersRelations = relations(orders, ({ one, many }) => ({
@@ -105,12 +100,5 @@ export const orderItemsRelations = relations(order_items, ({ one }) => ({
   post: one(posts, {
     fields: [order_items.post_id],
     references: [posts.id],
-  }),
-}));
-
-export const whatsappRelations = relations(whatsapp, ({ one }) => ({
-  user: one(users, {
-    fields: [whatsapp.user_id],
-    references: [users.id],
   }),
 }));

@@ -30,6 +30,7 @@ const users = sqliteTable("users", {
   id: text("id").primaryKey().unique().$default(v4),
   name: text("name").notNull(),
   phone: text("phone").notNull().unique(),
+  telegram: text("telegram"),
   email: text("email").notNull().unique(),
   password: text("password").notNull().$default(v4),
   role_id: text("role_id")
@@ -42,6 +43,9 @@ const users = sqliteTable("users", {
   created: text("created")
     .notNull()
     .$default(() => new Date().toISOString()),
+  temp: text("temp")
+    .notNull()
+    .default(JSON.stringify({ status: "unstarted" })),
 });
 
 export default users;

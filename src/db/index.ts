@@ -3,7 +3,6 @@ import udms, { qualities } from "@/db/udms";
 import stands, { cities, countries, squares, warehouses } from "@/db/stands";
 import posts, { post_prices } from "@/db/posts";
 import products, { categories } from "@/db/products";
-import whatsapp from "@/db/whatsapp";
 import orders, { order_items } from "@/db/orders";
 
 export {
@@ -11,8 +10,6 @@ export {
   users,
   document_types,
   roles,
-  // Whatsapp
-  whatsapp,
   // UDM
   udms,
   qualities,
