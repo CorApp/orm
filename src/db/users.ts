@@ -1,4 +1,4 @@
-import { sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { v4 } from "uuid";
 
 export const DOCUMENT_TYPES: DocumentTypes[] = ["CC", "CE", "NIT", "PP", "PPT"];
@@ -30,6 +30,7 @@ const users = sqliteTable("users", {
   id: text("id").primaryKey().unique().$default(v4),
   name: text("name").notNull(),
   phone: text("phone").notNull().unique(),
+  balance: numeric("balance").notNull().default("0"),
   telegram: text("telegram"),
   email: text("email").notNull().unique(),
   password: text("password").notNull().$default(v4),

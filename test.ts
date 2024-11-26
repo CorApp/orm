@@ -25,3 +25,21 @@ const allPosts = await db.query.posts.findMany({
   },
 });
 console.log({ allPosts });
+
+const findOrder = await db.query.orders.findFirst({
+  // where: orm.and(orm.eq(schemas.orders.status, "awaiting_confirmation")),
+  with: {
+    buyer: true,
+    items: {
+      with: {
+        post: {
+          with: {
+            udm: true,
+          },
+        },
+      },
+    },
+  },
+});
+
+console.log({ findOrder: JSON.stringify(findOrder, null, 2) });
