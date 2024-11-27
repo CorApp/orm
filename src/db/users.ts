@@ -46,7 +46,9 @@ const users = sqliteTable("users", {
     .$default(() => new Date().toISOString()),
   temp: text("temp")
     .notNull()
-    .default(JSON.stringify({ status: "unstarted" })),
+    .$default(() =>
+      JSON.stringify({ status: "unstarted", last_message: Date.now() }),
+    ),
 });
 
 export default users;
