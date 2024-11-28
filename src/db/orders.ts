@@ -8,7 +8,7 @@ export const PAYMENT_METHODS: PaymentMethod[] = ["cash", "online"];
 export const ORDER_STATUSES: StatusOrder[] = [
   "awaiting_confirmation",
   "awaiting_payment",
-  "paid",
+  "awaiting_shipment",
 ];
 
 const orders = sqliteTable("orders", {
