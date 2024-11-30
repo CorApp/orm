@@ -30,6 +30,7 @@ const users = sqliteTable("users", {
   id: text("id").primaryKey().unique().$default(v4),
   name: text("name").notNull(),
   phone: text("phone").notNull().unique(),
+  thread: text("thread"),
   balance: numeric("balance").notNull().default("0"),
   telegram: text("telegram"),
   email: text("email").notNull().unique(),
