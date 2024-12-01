@@ -9,6 +9,7 @@ export const ORDER_STATUSES: StatusOrder[] = [
   "awaiting_confirmation",
   "awaiting_payment",
   "awaiting_shipment",
+  "awaiting_finish",
 ];
 
 const orders = sqliteTable("orders", {

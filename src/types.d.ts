@@ -5,4 +5,5 @@ type PaymentMethod = "cash" | "online";
 type StatusOrder =
   | "awaiting_confirmation"
   | "awaiting_payment"
-  | "awaiting_shipment";
+  | "awaiting_shipment"
+  | "awaiting_finish";
