@@ -48,7 +48,11 @@ const users = sqliteTable("users", {
   temp: text("temp")
     .notNull()
     .$default(() =>
-      JSON.stringify({ status: "unstarted", last_message: Date.now() }),
+      JSON.stringify({
+        status: "unstarted",
+        tgStatus: "unstarted",
+        last_message: Date.now(),
+      }),
     ),
 });
 
