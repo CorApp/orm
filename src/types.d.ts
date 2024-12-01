@@ -1,4 +1,4 @@
-type UserRole = "admin" | "buyer" | "seller" | "driver" | "carrier" | "shopper";
+type UserRole = "admin" | "buyer" | "seller" | "driver" | "shopper";
 type DocumentTypes = "CC" | "CE" | "NIT" | "PP" | "PPT";
 type DeliveryMethod = "pickup" | "delivery";
 type PaymentMethod = "cash" | "online";
@@ -6,4 +6,6 @@ type StatusOrder =
   | "awaiting_confirmation"
   | "awaiting_payment"
   | "awaiting_shipment"
-  | "awaiting_finish";
+  | "sending"
+  | "awaiting_finish"
+  | "finished";

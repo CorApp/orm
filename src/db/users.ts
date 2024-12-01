@@ -7,7 +7,6 @@ export const USER_ROLES: UserRole[] = [
   "buyer",
   "seller",
   "driver",
-  "carrier",
   "shopper",
 ];
 
