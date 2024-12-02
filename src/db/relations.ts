@@ -5,6 +5,7 @@ import udms, { qualities } from "@/db/udms";
 import stands, { cities, countries, squares, warehouses } from "@/db/stands";
 import posts from "@/db/posts";
 import orders, { order_items } from "@/db/orders";
+import vehicles from "@/db/vehicles";
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
   products: many(products),
@@ -81,6 +82,13 @@ export const usersRelations = relations(users, ({ one }) => ({
   documentType: one(document_types, {
     fields: [users.document_type_id],
     references: [document_types.id],
+  }),
+}));
+
+export const vehiclesRelations = relations(vehicles, ({ one }) => ({
+  driver: one(users, {
+    fields: [vehicles.driver_id],
+    references: [users.id],
   }),
 }));
 

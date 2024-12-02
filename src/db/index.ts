@@ -4,6 +4,7 @@ import stands, { cities, countries, squares, warehouses } from "@/db/stands";
 import posts, { post_prices } from "@/db/posts";
 import products, { categories } from "@/db/products";
 import orders, { order_items } from "@/db/orders";
+import vehicles from "@/db/vehicles";
 
 export {
   // User
@@ -28,6 +29,8 @@ export {
   // Order
   orders,
   order_items,
+  // Vehicle
+  vehicles,
 };
 
 export * from "@/db/relations";
