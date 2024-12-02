@@ -29,6 +29,7 @@ const orders = sqliteTable("orders", {
   created: text("created")
     .notNull()
     .$default(() => new Date().toISOString()),
+  driver_id: text("driver_id").references(() => users.id),
 });
 
 export const order_items = sqliteTable("order_items", {
