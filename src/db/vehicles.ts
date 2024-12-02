@@ -9,6 +9,7 @@ const vehicles = sqliteTable("vehicles", {
     .references(() => users.id),
   type: text("type").notNull(),
   max_weight: numeric("max_weight").notNull(),
+  status: text("status").notNull().default("sleeping"),
 });
 
 export default vehicles;
