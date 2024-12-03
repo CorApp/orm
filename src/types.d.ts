@@ -6,6 +6,7 @@ type StatusOrder =
   | "awaiting_confirmation"
   | "awaiting_payment"
   | "awaiting_shipment"
+  | "driver_assigned"
   | "sending"
   | "awaiting_finish"
   | "finished";

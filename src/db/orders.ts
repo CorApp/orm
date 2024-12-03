@@ -9,6 +9,7 @@ export const ORDER_STATUSES: StatusOrder[] = [
   "awaiting_confirmation",
   "awaiting_payment",
   "awaiting_shipment",
+  "driver_assigned",
   "sending",
   "awaiting_finish",
   "finished",
