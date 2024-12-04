@@ -5,6 +5,7 @@ import posts, { post_prices } from "@/db/posts";
 import products, { categories } from "@/db/products";
 import orders, { order_items } from "@/db/orders";
 import vehicles from "@/db/vehicles";
+import shorts from "@/db/shorts";
 
 export {
   // User
@@ -31,6 +32,8 @@ export {
   order_items,
   // Vehicle
   vehicles,
+  // Url Short
+  shorts,
 };
 
 export * from "@/db/relations";
