@@ -13,16 +13,12 @@ export const USER_ROLES: UserRole[] = [
 // Sqlite table
 export const document_types = sqliteTable("document_types", {
   id: text("id").primaryKey().unique().$default(v4),
-  name: text("name", { enum: ["CC", ...DOCUMENT_TYPES] })
-    .notNull()
-    .unique(),
+  name: text("name").notNull().unique(),
 });
 
 export const roles = sqliteTable("roles", {
   id: text("id").primaryKey().unique().$default(v4),
-  name: text("name", { enum: ["admin", ...USER_ROLES] })
-    .notNull()
-    .unique(),
+  name: text("name").notNull().unique(),
 });
 
 const users = sqliteTable("users", {

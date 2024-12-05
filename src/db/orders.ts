@@ -20,12 +20,10 @@ const orders = sqliteTable("orders", {
   buyer_id: text("buyer_id")
     .notNull()
     .references(() => users.id),
-  delivery: text("delivery", {
-    enum: ["pickup", ...DELIVERY_METHODS],
-  }).notNull(),
-  payment: text("payment", { enum: ["cash", ...PAYMENT_METHODS] }).notNull(),
+  delivery: text("delivery").notNull(),
+  payment: text("payment").notNull(),
   paid: numeric("paid").notNull().default("0"),
-  status: text("status", { enum: ["paid", ...ORDER_STATUSES] }).notNull(),
+  status: text("status").notNull(),
   extra: text("extra").notNull().default(JSON.stringify({})),
   created: text("created")
     .notNull()
