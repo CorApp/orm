@@ -19,6 +19,7 @@ const posts = sqliteTable("posts", {
   extra: numeric("extra").default("0"),
   min: numeric("min").notNull().default("1"),
   wholesale: numeric("wholesale").notNull().default("0"),
+  description: text("description"),
   seller_id: text("seller_id")
     .notNull()
     .references(() => users.id),

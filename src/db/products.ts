@@ -13,7 +13,6 @@ const products = sqliteTable("products", {
   name: text("name").notNull(),
   photo: text("photo").notNull(),
   code: text("code").notNull().unique(),
-  considerations: text("considerations"),
   category_id: text("category_id")
     .notNull()
     .references(() => categories.id),
