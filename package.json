@@ -29,9 +29,9 @@
     "db:studio": "drizzle-kit studio"
   },
   "devDependencies": {
-    "@types/bun": "latest",
+    "@types/bun": "^1.1.14",
     "@types/uuid": "^10.0.0",
-    "drizzle-kit": "^0.24.2",
+    "drizzle-kit": "^0.30.1",
     "prettier": "^3.4.2",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2"
@@ -42,8 +42,8 @@
   },
   "dependencies": {
     "@libsql/client": "^0.14.0",
-    "drizzle-orm": "^0.33.0",
-    "uuid": "^10.0.0",
+    "drizzle-orm": "^0.38.3",
+    "uuid": "^11.0.3",
     "zod": "^3.24.1"
   },
   "repository": {
