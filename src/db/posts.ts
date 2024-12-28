@@ -40,7 +40,6 @@ const posts = sqliteTable("posts", {
   created: text("created")
     .notNull()
     .$default(() => new Date().toISOString()),
-  deleted: numeric("deleted").notNull().default("0"),
 });
 
 export default posts;
