@@ -37,6 +37,7 @@ const posts = sqliteTable("posts", {
     .references(() => stands.id),
   published: numeric("published").notNull().default("0"),
   updated: numeric("updated").notNull().default("0"),
+  offer: numeric("offer").notNull().default("0"),
   created: text("created")
     .notNull()
     .$default(() => new Date().toISOString()),
