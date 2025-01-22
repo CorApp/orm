@@ -1,46 +1,67 @@
-import { numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+  index,
+  int,
+  numeric,
+  sqliteTable,
+  text,
+} from "drizzle-orm/sqlite-core";
 import users from "@/db/users";
 import posts from "@/db/posts";
-import { v4 } from "uuid";
+import { relations } from "drizzle-orm";
 
-export const DELIVERY_METHODS: DeliveryMethod[] = ["pickup", "delivery"];
-export const PAYMENT_METHODS: PaymentMethod[] = ["cash", "online"];
-export const ORDER_STATUSES: StatusOrder[] = [
-  "awaiting_confirmation",
-  "awaiting_payment",
-  "awaiting_shipment",
-  "driver_assigned",
-  "sending",
-  "awaiting_finish",
-  "finished",
-];
+const orders = sqliteTable(
+  "orders",
+  {
+    id: int().primaryKey({ autoIncrement: true }),
+    buyer_id: int()
+      .notNull()
+      .references(() => users.id),
+    delivery: text().notNull(),
+    payment: text().notNull(),
+    paid: numeric().notNull(),
+    status: text().notNull(),
+    extra: text().notNull().default(JSON.stringify({})),
+    created: text()
+      .notNull()
+      .$default(() => new Date().toISOString()),
+    driver_id: int().references(() => users.id),
+  },
+  (t) => [index("orders_index").on(t.id)],
+);
 
-const orders = sqliteTable("orders", {
-  id: text("id").primaryKey().unique().$default(v4),
-  buyer_id: text("buyer_id")
-    .notNull()
-    .references(() => users.id),
-  delivery: text("delivery").notNull(),
-  payment: text("payment").notNull(),
-  paid: numeric("paid").notNull().default("0"),
-  status: text("status").notNull(),
-  extra: text("extra").notNull().default(JSON.stringify({})),
-  created: text("created")
-    .notNull()
-    .$default(() => new Date().toISOString()),
-  driver_id: text("driver_id").references(() => users.id),
-});
-
-export const order_items = sqliteTable("order_items", {
-  id: text("id").primaryKey().unique().$default(v4),
-  order_id: text("order_id")
-    .notNull()
-    .references(() => orders.id),
-  post_id: text("post_id")
-    .notNull()
-    .references(() => posts.id),
-  quantity: text("quantity").notNull(),
-  price: text("price").notNull(),
-});
+export const order_items = sqliteTable(
+  "order_items",
+  {
+    id: int().primaryKey({ autoIncrement: true }),
+    order_id: int()
+      .notNull()
+      .references(() => orders.id),
+    post_id: int()
+      .notNull()
+      .references(() => posts.id),
+    quantity: text().notNull(),
+    price: text().notNull(),
+  },
+  (t) => [index("order_item_index").on(t.id)],
+);
 
 export default orders;
+
+export const ordersRelations = relations(orders, ({ one, many }) => ({
+  buyer: one(users, {
+    fields: [orders.buyer_id],
+    references: [users.id],
+  }),
+  items: many(order_items),
+}));
+
+export const orderItemsRelations = relations(order_items, ({ one }) => ({
+  order: one(orders, {
+    fields: [order_items.order_id],
+    references: [orders.id],
+  }),
+  post: one(posts, {
+    fields: [order_items.post_id],
+    references: [posts.id],
+  }),
+}));

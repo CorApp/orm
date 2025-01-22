@@ -1,46 +1,71 @@
-import { numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
-import { v4 } from "uuid";
+import {
+  index,
+  int,
+  numeric,
+  sqliteTable,
+  text,
+} from "drizzle-orm/sqlite-core";
 import udms, { qualities } from "@/db/udms";
 import products from "@/db/products";
 import stands from "@/db/stands";
 import users from "@/db/users";
+import { relations } from "drizzle-orm";
 
-export const post_prices = sqliteTable("post_prices", {
-  id: text("id").primaryKey().unique().$default(v4),
-  post_id: text("post_id")
-    .notNull()
-    .references(() => posts.id),
-  price: numeric("price").notNull(),
-});
-
-const posts = sqliteTable("posts", {
-  id: text("id").primaryKey().unique().$default(v4),
-  price: numeric("price").notNull(),
-  extra: numeric("extra").default("0"),
-  min: numeric("min").notNull().default("1"),
-  wholesale: numeric("wholesale").notNull().default("0"),
-  description: text("description"),
-  seller_id: text("seller_id")
-    .notNull()
-    .references(() => users.id),
-  udm_id: text("udm_id")
-    .notNull()
-    .references(() => udms.id),
-  quality_id: text("quality_id")
-    .notNull()
-    .references(() => qualities.id),
-  product_id: text("product_id")
-    .notNull()
-    .references(() => products.id),
-  stand_id: text("stand_id")
-    .notNull()
-    .references(() => stands.id),
-  published: numeric("published").notNull().default("0"),
-  updated: numeric("updated").notNull().default("0"),
-  offer: numeric("offer").notNull().default("0"),
-  created: text("created")
-    .notNull()
-    .$default(() => new Date().toISOString()),
-});
+const posts = sqliteTable(
+  "posts",
+  {
+    id: int().primaryKey({ autoIncrement: true }),
+    price: numeric().notNull(),
+    extra: numeric().default("0"),
+    min: int().notNull().default(1),
+    wholesale: int().notNull().default(0),
+    description: text(),
+    seller_id: int()
+      .notNull()
+      .references(() => users.id),
+    udm_id: int()
+      .notNull()
+      .references(() => udms.id),
+    quality_id: int()
+      .notNull()
+      .references(() => qualities.id),
+    product_id: int()
+      .notNull()
+      .references(() => products.id),
+    stand_id: int()
+      .notNull()
+      .references(() => stands.id),
+    published: int().notNull().default(0),
+    updated: int().notNull().default(0),
+    offer: int().notNull().default(0),
+    created: text()
+      .notNull()
+      .$default(() => new Date().toISOString()),
+  },
+  (t) => [index("posts_index").on(t.id)],
+);
 
 export default posts;
+
+export const postsRelations = relations(posts, ({ one }) => ({
+  seller: one(users, {
+    fields: [posts.seller_id],
+    references: [users.id],
+  }),
+  udm: one(udms, {
+    fields: [posts.udm_id],
+    references: [udms.id],
+  }),
+  quality: one(qualities, {
+    fields: [posts.quality_id],
+    references: [qualities.id],
+  }),
+  product: one(products, {
+    fields: [posts.product_id],
+    references: [products.id],
+  }),
+  stand: one(stands, {
+    fields: [posts.stand_id],
+    references: [stands.id],
+  }),
+}));

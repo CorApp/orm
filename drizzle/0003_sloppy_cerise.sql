@@ -1,1 +1,0 @@
-ALTER TABLE `posts` ADD `offer` numeric DEFAULT '0' NOT NULL;

@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1733430300831,
-      "tag": "0000_eager_tony_stark",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1734477674751,
-      "tag": "0001_clumsy_mastermind",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1735394181326,
-      "tag": "0002_keen_violations",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "6",
-      "when": 1736974318998,
-      "tag": "0003_sloppy_cerise",
+      "when": 1737585028426,
+      "tag": "0000_secret_triton",
       "breakpoints": true
     }
   ]

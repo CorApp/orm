@@ -2,8 +2,6 @@ import { eq } from "drizzle-orm";
 import { DOCUMENT_TYPES, USER_ROLES } from "@/db/users";
 import dbInit, { schemas } from "@/index";
 
-// TODO: Migrator
-
 const db = dbInit(process.env);
 for (const role of USER_ROLES) {
   const existRole = await db.query.roles.findFirst({
@@ -45,7 +43,7 @@ let city = await db.query.cities.findFirst({
 if (!city) {
   await db.insert(schemas.cities).values({
     name: cityName,
-    country_id: country!.id!.toString(),
+    country_id: country!.id,
   });
 
   city = await db.query.cities.findFirst({
@@ -61,6 +59,6 @@ const square = await db.query.squares.findFirst({
 if (!square) {
   await db.insert(schemas.squares).values({
     name: namePlaza,
-    city_id: city!.id!.toString(),
+    city_id: city!.id,
   });
 }

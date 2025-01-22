@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "dfe385d3-c54f-43fd-96a7-5dfc9dc75145",
+  "id": "8ca9fc01-0d35-48f5-bc64-abe81df4a7e5",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "categories": {
@@ -9,10 +9,10 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "slug": {
           "name": "slug",
@@ -37,34 +37,35 @@
         }
       },
       "indexes": {
-        "categories_id_unique": {
-          "name": "categories_id_unique",
-          "columns": [
-            "id"
-          ],
-          "isUnique": true
-        },
         "categories_slug_unique": {
           "name": "categories_slug_unique",
           "columns": [
             "slug"
           ],
           "isUnique": true
+        },
+        "categories_index": {
+          "name": "categories_index",
+          "columns": [
+            "id"
+          ],
+          "isUnique": false
         }
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "cities": {
       "name": "cities",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "name": {
           "name": "name",
@@ -75,19 +76,19 @@
         },
         "country_id": {
           "name": "country_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         }
       },
       "indexes": {
-        "cities_id_unique": {
-          "name": "cities_id_unique",
+        "cities_index": {
+          "name": "cities_index",
           "columns": [
             "id"
           ],
-          "isUnique": true
+          "isUnique": false
         }
       },
       "foreignKeys": {
@@ -106,17 +107,18 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "countries": {
       "name": "countries",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "name": {
           "name": "name",
@@ -127,12 +129,12 @@
         }
       },
       "indexes": {
-        "countries_id_unique": {
-          "name": "countries_id_unique",
+        "countries_index": {
+          "name": "countries_index",
           "columns": [
             "id"
           ],
-          "isUnique": true
+          "isUnique": false
         },
         "countries_name_unique": {
           "name": "countries_name_unique",
@@ -144,17 +146,18 @@
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "document_types": {
       "name": "document_types",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "name": {
           "name": "name",
@@ -165,12 +168,12 @@
         }
       },
       "indexes": {
-        "document_types_id_unique": {
-          "name": "document_types_id_unique",
+        "document_types_index": {
+          "name": "document_types_index",
           "columns": [
             "id"
           ],
-          "isUnique": true
+          "isUnique": false
         },
         "document_types_name_unique": {
           "name": "document_types_name_unique",
@@ -182,28 +185,29 @@
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "order_items": {
       "name": "order_items",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "order_id": {
           "name": "order_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "post_id": {
           "name": "post_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -224,12 +228,12 @@
         }
       },
       "indexes": {
-        "order_items_id_unique": {
-          "name": "order_items_id_unique",
+        "order_item_index": {
+          "name": "order_item_index",
           "columns": [
             "id"
           ],
-          "isUnique": true
+          "isUnique": false
         }
       },
       "foreignKeys": {
@@ -261,21 +265,22 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "orders": {
       "name": "orders",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "buyer_id": {
           "name": "buyer_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -299,8 +304,7 @@
           "type": "numeric",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "'0'"
+          "autoincrement": false
         },
         "status": {
           "name": "status",
@@ -326,19 +330,19 @@
         },
         "driver_id": {
           "name": "driver_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
         }
       },
       "indexes": {
-        "orders_id_unique": {
-          "name": "orders_id_unique",
+        "orders_index": {
+          "name": "orders_index",
           "columns": [
             "id"
           ],
-          "isUnique": true
+          "isUnique": false
         }
       },
       "foreignKeys": {
@@ -370,69 +374,18 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "post_prices": {
-      "name": "post_prices",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "text",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "post_id": {
-          "name": "post_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "price": {
-          "name": "price",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        }
-      },
-      "indexes": {
-        "post_prices_id_unique": {
-          "name": "post_prices_id_unique",
-          "columns": [
-            "id"
-          ],
-          "isUnique": true
-        }
-      },
-      "foreignKeys": {
-        "post_prices_post_id_posts_id_fk": {
-          "name": "post_prices_post_id_posts_id_fk",
-          "tableFrom": "post_prices",
-          "tableTo": "posts",
-          "columnsFrom": [
-            "post_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "posts": {
       "name": "posts",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "price": {
           "name": "price",
@@ -451,70 +404,85 @@
         },
         "min": {
           "name": "min",
-          "type": "numeric",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": "'1'"
+          "default": 1
         },
         "wholesale": {
           "name": "wholesale",
-          "type": "numeric",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": "'0'"
+          "default": 0
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         },
         "seller_id": {
           "name": "seller_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "udm_id": {
           "name": "udm_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "quality_id": {
           "name": "quality_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "product_id": {
           "name": "product_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "stand_id": {
           "name": "stand_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "published": {
           "name": "published",
-          "type": "numeric",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": "'0'"
+          "default": 0
         },
         "updated": {
           "name": "updated",
-          "type": "numeric",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": "'0'"
+          "default": 0
+        },
+        "offer": {
+          "name": "offer",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
         },
         "created": {
           "name": "created",
@@ -522,23 +490,15 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
-        },
-        "deleted": {
-          "name": "deleted",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "'0'"
         }
       },
       "indexes": {
-        "posts_id_unique": {
-          "name": "posts_id_unique",
+        "posts_index": {
+          "name": "posts_index",
           "columns": [
             "id"
           ],
-          "isUnique": true
+          "isUnique": false
         }
       },
       "foreignKeys": {
@@ -609,17 +569,18 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "products": {
       "name": "products",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "name": {
           "name": "name",
@@ -642,31 +603,24 @@
           "notNull": true,
           "autoincrement": false
         },
-        "considerations": {
-          "name": "considerations",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
         "category_id": {
           "name": "category_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         }
       },
       "indexes": {
-        "products_id_unique": {
-          "name": "products_id_unique",
+        "products_index": {
+          "name": "products_index",
           "columns": [
             "id"
           ],
-          "isUnique": true
+          "isUnique": false
         },
-        "products_code_unique": {
-          "name": "products_code_unique",
+        "code_product_unique": {
+          "name": "code_product_unique",
           "columns": [
             "code"
           ],
@@ -689,17 +643,18 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "qualities": {
       "name": "qualities",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "name": {
           "name": "name",
@@ -710,27 +665,28 @@
         }
       },
       "indexes": {
-        "qualities_id_unique": {
-          "name": "qualities_id_unique",
+        "qualities_index": {
+          "name": "qualities_index",
           "columns": [
             "id"
           ],
-          "isUnique": true
+          "isUnique": false
         }
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "roles": {
       "name": "roles",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "name": {
           "name": "name",
@@ -741,12 +697,12 @@
         }
       },
       "indexes": {
-        "roles_id_unique": {
-          "name": "roles_id_unique",
+        "roles_index": {
+          "name": "roles_index",
           "columns": [
             "id"
           ],
-          "isUnique": true
+          "isUnique": false
         },
         "roles_name_unique": {
           "name": "roles_name_unique",
@@ -758,7 +714,8 @@
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "shorts": {
       "name": "shorts",
@@ -779,27 +736,35 @@
         }
       },
       "indexes": {
-        "shorts_id_unique": {
-          "name": "shorts_id_unique",
+        "shorts_index": {
+          "name": "shorts_index",
           "columns": [
             "id"
+          ],
+          "isUnique": false
+        },
+        "shorts_url_unique": {
+          "name": "shorts_url_unique",
+          "columns": [
+            "url"
           ],
           "isUnique": true
         }
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "squares": {
       "name": "squares",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "name": {
           "name": "name",
@@ -810,19 +775,19 @@
         },
         "city_id": {
           "name": "city_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         }
       },
       "indexes": {
-        "squares_id_unique": {
-          "name": "squares_id_unique",
+        "squares_index": {
+          "name": "squares_index",
           "columns": [
             "id"
           ],
-          "isUnique": true
+          "isUnique": false
         },
         "squares_name_unique": {
           "name": "squares_name_unique",
@@ -848,17 +813,18 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "stands": {
       "name": "stands",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "name": {
           "name": "name",
@@ -876,26 +842,26 @@
         },
         "seller_id": {
           "name": "seller_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "warehouse_id": {
           "name": "warehouse_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         }
       },
       "indexes": {
-        "stands_id_unique": {
-          "name": "stands_id_unique",
+        "stands_index": {
+          "name": "stands_index",
           "columns": [
             "id"
           ],
-          "isUnique": true
+          "isUnique": false
         },
         "stands_code_unique": {
           "name": "stands_code_unique",
@@ -934,17 +900,18 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "udms": {
       "name": "udms",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "name": {
           "name": "name",
@@ -987,27 +954,28 @@
         }
       },
       "indexes": {
-        "udms_id_unique": {
-          "name": "udms_id_unique",
+        "udms_index": {
+          "name": "udms_index",
           "columns": [
             "id"
           ],
-          "isUnique": true
+          "isUnique": false
         }
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "users": {
       "name": "users",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "name": {
           "name": "name",
@@ -1061,7 +1029,7 @@
         },
         "role_id": {
           "name": "role_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -1075,7 +1043,7 @@
         },
         "document_type_id": {
           "name": "document_type_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -1092,16 +1060,17 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": false,
+          "default": "'{\"status\":\"unstarted\",\"tgStatus\":\"unstarted\",\"last_message\":0}'"
         }
       },
       "indexes": {
-        "users_id_unique": {
-          "name": "users_id_unique",
+        "users_index": {
+          "name": "users_index",
           "columns": [
             "id"
           ],
-          "isUnique": true
+          "isUnique": false
         },
         "users_phone_unique": {
           "name": "users_phone_unique",
@@ -1147,21 +1116,22 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "vehicles": {
       "name": "vehicles",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "driver_id": {
           "name": "driver_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -1189,15 +1159,7 @@
           "default": "'sleeping'"
         }
       },
-      "indexes": {
-        "vehicles_id_unique": {
-          "name": "vehicles_id_unique",
-          "columns": [
-            "id"
-          ],
-          "isUnique": true
-        }
-      },
+      "indexes": {},
       "foreignKeys": {
         "vehicles_driver_id_users_id_fk": {
           "name": "vehicles_driver_id_users_id_fk",
@@ -1214,17 +1176,18 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "warehouses": {
       "name": "warehouses",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": true
         },
         "name": {
           "name": "name",
@@ -1242,19 +1205,19 @@
         },
         "square_id": {
           "name": "square_id",
-          "type": "text",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         }
       },
       "indexes": {
-        "warehouses_id_unique": {
-          "name": "warehouses_id_unique",
+        "warehouses_index": {
+          "name": "warehouses_index",
           "columns": [
             "id"
           ],
-          "isUnique": true
+          "isUnique": false
         },
         "warehouses_code_unique": {
           "name": "warehouses_code_unique",
@@ -1280,9 +1243,11 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     }
   },
+  "views": {},
   "enums": {},
   "_meta": {
     "schemas": {},
