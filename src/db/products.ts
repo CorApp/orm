@@ -1,10 +1,11 @@
-import { index, int, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
+import { index, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
 import { relations } from "drizzle-orm";
+import { v4 } from "uuid";
 
 export const categories = sqliteTable(
   "categories",
   {
-    id: int().primaryKey({ autoIncrement: true }),
+    id: text().primaryKey().$default(v4),
     slug: text().notNull().unique(),
     name: text().notNull(),
     img: text().notNull(),
@@ -15,11 +16,11 @@ export const categories = sqliteTable(
 const products = sqliteTable(
   "products",
   {
-    id: int().primaryKey({ autoIncrement: true }),
+    id: text().primaryKey().$default(v4),
     name: text().notNull(),
     photo: text().notNull(),
     code: text().notNull(),
-    category_id: int()
+    category_id: text()
       .notNull()
       .references(() => categories.id),
   },

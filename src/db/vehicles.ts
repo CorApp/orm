@@ -1,10 +1,11 @@
-import { int, numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import users from "@/db/users";
 import { relations } from "drizzle-orm";
+import { v4 } from "uuid";
 
 const vehicles = sqliteTable("vehicles", {
-  id: int().primaryKey({ autoIncrement: true }),
-  driver_id: int()
+  id: text().primaryKey().$default(v4),
+  driver_id: text()
     .notNull()
     .references(() => users.id),
   type: text().notNull(),

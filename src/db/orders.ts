@@ -1,19 +1,14 @@
-import {
-  index,
-  int,
-  numeric,
-  sqliteTable,
-  text,
-} from "drizzle-orm/sqlite-core";
+import { index, numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import users from "@/db/users";
 import posts from "@/db/posts";
 import { relations } from "drizzle-orm";
+import { v4 } from "uuid";
 
 const orders = sqliteTable(
   "orders",
   {
-    id: int().primaryKey({ autoIncrement: true }),
-    buyer_id: int()
+    id: text().primaryKey().$default(v4),
+    buyer_id: text()
       .notNull()
       .references(() => users.id),
     delivery: text().notNull(),
@@ -24,7 +19,7 @@ const orders = sqliteTable(
     created: text()
       .notNull()
       .$default(() => new Date().toISOString()),
-    driver_id: int().references(() => users.id),
+    driver_id: text().references(() => users.id),
   },
   (t) => [index("orders_index").on(t.id)],
 );
@@ -32,11 +27,11 @@ const orders = sqliteTable(
 export const order_items = sqliteTable(
   "order_items",
   {
-    id: int().primaryKey({ autoIncrement: true }),
-    order_id: int()
+    id: text().primaryKey().$default(v4),
+    order_id: text()
       .notNull()
       .references(() => orders.id),
-    post_id: int()
+    post_id: text()
       .notNull()
       .references(() => posts.id),
     quantity: text().notNull(),

@@ -1,11 +1,12 @@
-import { index, int, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
+import { index, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
 import users from "@/db/users";
 import { relations } from "drizzle-orm";
+import { v4 } from "uuid";
 
 export const countries = sqliteTable(
   "countries",
   {
-    id: int().primaryKey({ autoIncrement: true }),
+    id: text().primaryKey().$default(v4),
     name: text().notNull(),
   },
   (t) => [
@@ -17,9 +18,9 @@ export const countries = sqliteTable(
 export const cities = sqliteTable(
   "cities",
   {
-    id: int().primaryKey({ autoIncrement: true }),
+    id: text().primaryKey().$default(v4),
     name: text().notNull(),
-    country_id: int()
+    country_id: text()
       .notNull()
       .references(() => countries.id),
   },
@@ -30,9 +31,9 @@ export const squares = sqliteTable(
   "squares",
   {
     // Plazas
-    id: int().primaryKey({ autoIncrement: true }),
+    id: text().primaryKey().$default(v4),
     name: text().notNull(),
-    city_id: int()
+    city_id: text()
       .notNull()
       .references(() => cities.id),
   },
@@ -46,10 +47,10 @@ export const warehouses = sqliteTable(
   "warehouses",
   {
     // Bodegas
-    id: int().primaryKey({ autoIncrement: true }),
+    id: text().primaryKey().$default(v4),
     name: text().notNull(),
     code: text().notNull(),
-    square_id: int("square_id")
+    square_id: text()
       .notNull()
       .references(() => squares.id),
   },
@@ -63,13 +64,13 @@ const stands = sqliteTable(
   "stands",
   {
     // Puestos
-    id: int().primaryKey({ autoIncrement: true }),
+    id: text().primaryKey().$default(v4),
     name: text().notNull(),
     code: text().notNull(),
-    seller_id: int()
+    seller_id: text()
       .notNull()
       .references(() => users.id),
-    warehouse_id: int()
+    warehouse_id: text()
       .notNull()
       .references(() => warehouses.id),
   },

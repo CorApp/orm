@@ -10,31 +10,32 @@ import products from "@/db/products";
 import stands from "@/db/stands";
 import users from "@/db/users";
 import { relations } from "drizzle-orm";
+import { v4 } from "uuid";
 
 const posts = sqliteTable(
   "posts",
   {
-    id: int().primaryKey({ autoIncrement: true }),
+    id: text().primaryKey().$default(v4),
     price: numeric().notNull(),
     extra: numeric().default("0"),
     min: int().notNull().default(1),
-    wholesale: int().notNull().default(0),
     description: text(),
-    seller_id: int()
+    seller_id: text()
       .notNull()
       .references(() => users.id),
-    udm_id: int()
+    udm_id: text()
       .notNull()
       .references(() => udms.id),
-    quality_id: int()
+    quality_id: text()
       .notNull()
       .references(() => qualities.id),
-    product_id: int()
+    product_id: text()
       .notNull()
       .references(() => products.id),
-    stand_id: int()
+    stand_id: text()
       .notNull()
       .references(() => stands.id),
+    wholesale: int().notNull().default(0),
     published: int().notNull().default(0),
     updated: int().notNull().default(0),
     offer: int().notNull().default(0),

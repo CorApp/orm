@@ -1,12 +1,12 @@
 import {
   index,
-  int,
   numeric,
   sqliteTable,
   text,
   unique,
 } from "drizzle-orm/sqlite-core";
 import { relations } from "drizzle-orm";
+import { v4 } from "uuid";
 
 export const DOCUMENT_TYPES: DocumentTypes[] = ["CC", "CE", "NIT", "PP", "PPT"];
 export const USER_ROLES: UserRole[] = [
@@ -21,7 +21,7 @@ export const USER_ROLES: UserRole[] = [
 export const document_types = sqliteTable(
   "document_types",
   {
-    id: int().primaryKey({ autoIncrement: true }),
+    id: text().primaryKey().$default(v4),
     name: text().notNull(),
   },
   (t) => [
@@ -33,7 +33,7 @@ export const document_types = sqliteTable(
 export const roles = sqliteTable(
   "roles",
   {
-    id: int().primaryKey({ autoIncrement: true }),
+    id: text().primaryKey().$default(v4),
     name: text().notNull(),
   },
   (t) => [
@@ -45,7 +45,7 @@ export const roles = sqliteTable(
 const users = sqliteTable(
   "users",
   {
-    id: int().primaryKey({ autoIncrement: true }),
+    id: text().primaryKey().$default(v4),
     name: text().notNull(),
     phone: text().notNull(),
     thread: text(),
@@ -55,11 +55,11 @@ const users = sqliteTable(
     password: text()
       .notNull()
       .$default(() => Date.now().toString()),
-    role_id: int()
+    role_id: text()
       .notNull()
       .references(() => roles.id),
     document: text().notNull(),
-    document_type_id: int()
+    document_type_id: text()
       .notNull()
       .references(() => document_types.id),
     created: text()
