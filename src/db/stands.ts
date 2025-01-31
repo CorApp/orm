@@ -1,5 +1,5 @@
 import { index, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
-import users from "@/db/users";
+import { users } from "@/db/users";
 import { relations } from "drizzle-orm";
 import { v4 } from "uuid";
 
@@ -60,7 +60,7 @@ export const warehouses = sqliteTable(
   ],
 );
 
-const stands = sqliteTable(
+export const stands = sqliteTable(
   "stands",
   {
     // Puestos
@@ -79,8 +79,6 @@ const stands = sqliteTable(
     unique("stands_code_unique").on(t.code),
   ],
 );
-
-export default stands;
 
 export const standsRelations = relations(stands, ({ one }) => ({
   warehouse: one(warehouses, {

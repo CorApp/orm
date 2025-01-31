@@ -1,7 +1,7 @@
 import { index, numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { v4 } from "uuid";
 
-const udms = sqliteTable(
+export const udms = sqliteTable(
   "udms",
   {
     id: text().primaryKey().$default(v4),
@@ -22,5 +22,3 @@ export const qualities = sqliteTable(
   },
   (t) => [index("qualities_index").on(t.id)],
 );
-
-export default udms;

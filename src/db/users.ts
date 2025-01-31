@@ -42,7 +42,7 @@ export const roles = sqliteTable(
   ],
 );
 
-const users = sqliteTable(
+export const users = sqliteTable(
   "users",
   {
     id: text().primaryKey().$default(v4),
@@ -81,8 +81,6 @@ const users = sqliteTable(
     unique("users_email_unique").on(t.email),
   ],
 );
-
-export default users;
 
 export const usersRelations = relations(users, ({ one }) => ({
   role: one(roles, {

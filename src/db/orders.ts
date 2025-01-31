@@ -1,10 +1,10 @@
 import { index, numeric, sqliteTable, text } from "drizzle-orm/sqlite-core";
-import users from "@/db/users";
-import posts from "@/db/posts";
+import { users } from "@/db/users";
+import { posts } from "@/db/posts";
 import { relations } from "drizzle-orm";
 import { v4 } from "uuid";
 
-const orders = sqliteTable(
+export const orders = sqliteTable(
   "orders",
   {
     id: text().primaryKey().$default(v4),
@@ -39,8 +39,6 @@ export const order_items = sqliteTable(
   },
   (t) => [index("order_item_index").on(t.id)],
 );
-
-export default orders;
 
 export const ordersRelations = relations(orders, ({ one, many }) => ({
   buyer: one(users, {

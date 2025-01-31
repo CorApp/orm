@@ -4,7 +4,7 @@ import { envSchema } from "@/configs/env-parser";
 import * as schemas from "@/db";
 import * as orm from "drizzle-orm";
 
-export default function dbInit(envInit: object) {
+export function dbInit(envInit: object) {
   const env = envSchema.parse(envInit);
 
   const turso = createClient({
@@ -14,4 +14,5 @@ export default function dbInit(envInit: object) {
 
   return drizzle(turso, { schema: schemas });
 }
+
 export { schemas, orm };

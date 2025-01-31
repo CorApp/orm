@@ -1,6 +1,6 @@
 import { index, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
 
-const shorts = sqliteTable(
+export const shorts = sqliteTable(
   "shorts",
   {
     id: text().primaryKey(),
@@ -11,5 +11,3 @@ const shorts = sqliteTable(
     unique("shorts_url_unique").on(t.url),
   ],
 );
-
-export default shorts;

@@ -1,28 +1,32 @@
-import users, { document_types, roles, usersRelations } from "@/db/users";
-import udms, { qualities } from "@/db/udms";
-import stands, {
+import { document_types, roles, users, usersRelations } from "@/db/users";
+import { qualities, udms } from "@/db/udms";
+import {
   cities,
   citiesRelations,
   countries,
   squares,
   squaresRelations,
+  stands,
   standsRelations,
   warehouses,
   warehousesRelations,
 } from "@/db/stands";
-import posts, { postsRelations } from "@/db/posts";
-import products, {
+import { posts, postsRelations } from "@/db/posts";
+import {
   categories,
   categoriesRelations,
+  products,
   productsRelations,
 } from "@/db/products";
-import orders, {
+import {
   order_items,
   orderItemsRelations,
+  orders,
   ordersRelations,
 } from "@/db/orders";
-import vehicles, { vehiclesRelations } from "@/db/vehicles";
-import shorts from "@/db/shorts";
+import { vehicles, vehiclesRelations } from "@/db/vehicles";
+import { shorts } from "@/db/shorts";
+import { placesBanned } from "@/db/places-banned";
 
 export {
   // User
@@ -61,4 +65,6 @@ export {
   vehiclesRelations,
   // Url Short
   shorts,
+  // Places Banned
+  placesBanned,
 };

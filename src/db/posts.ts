@@ -5,14 +5,14 @@ import {
   sqliteTable,
   text,
 } from "drizzle-orm/sqlite-core";
-import udms, { qualities } from "@/db/udms";
-import products from "@/db/products";
-import stands from "@/db/stands";
-import users from "@/db/users";
+import { qualities, udms } from "@/db/udms";
+import { products } from "@/db/products";
+import { stands } from "@/db/stands";
+import { users } from "@/db/users";
 import { relations } from "drizzle-orm";
 import { v4 } from "uuid";
 
-const posts = sqliteTable(
+export const posts = sqliteTable(
   "posts",
   {
     id: text().primaryKey().$default(v4),
@@ -45,8 +45,6 @@ const posts = sqliteTable(
   },
   (t) => [index("posts_index").on(t.id)],
 );
-
-export default posts;
 
 export const postsRelations = relations(posts, ({ one }) => ({
   seller: one(users, {

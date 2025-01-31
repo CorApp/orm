@@ -13,7 +13,7 @@ export const categories = sqliteTable(
   (t) => [index("categories_index").on(t.id)],
 );
 
-const products = sqliteTable(
+export const products = sqliteTable(
   "products",
   {
     id: text().primaryKey().$default(v4),
@@ -29,8 +29,6 @@ const products = sqliteTable(
     unique("code_product_unique").on(t.code),
   ],
 );
-
-export default products;
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
   products: many(products),

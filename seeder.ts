@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { DOCUMENT_TYPES, USER_ROLES } from "@/db/users";
-import dbInit, { schemas } from "@/index";
+import { dbInit, schemas } from "@/index";
 
 const db = dbInit(process.env);
 for (const role of USER_ROLES) {
