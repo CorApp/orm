@@ -1,7 +1,7 @@
 {
   "name": "@corapp/orm",
   "description": "ORM for the database in TursoTech Drizzle",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -32,7 +32,7 @@
     "drizzle-kit": "^0.30.5",
     "prettier": "^3.5.2",
     "tsup": "^8.4.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.8.2"
   },
   "author": {
     "name": "CarmeloCampos",
