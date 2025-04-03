@@ -29,8 +29,8 @@
     "db:studio": "drizzle-kit studio"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.30.5",
-    "prettier": "^3.5.2",
+    "drizzle-kit": "^0.30.6",
+    "prettier": "^3.5.3",
     "tsup": "^8.4.0",
     "typescript": "^5.8.2"
   },
@@ -39,8 +39,8 @@
     "email": "hola@carmelocampos.com"
   },
   "dependencies": {
-    "@libsql/client": "^0.14.0",
-    "drizzle-orm": "^0.40.0",
+    "@libsql/client": "^0.15.2",
+    "drizzle-orm": "^0.41.0",
     "uuid": "^11.1.0",
     "zod": "^3.24.2"
   },
