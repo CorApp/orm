@@ -1,7 +1,7 @@
 {
   "name": "@corapp/orm",
   "description": "ORM for the database in TursoTech Drizzle",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -29,9 +29,9 @@
     "db:studio": "drizzle-kit studio"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.30.6",
+    "drizzle-kit": "^0.31.1",
     "prettier": "^3.5.3",
-    "tsup": "^8.4.0",
+    "tsup": "^8.5.0",
     "typescript": "^5.8.3"
   },
   "author": {
@@ -39,10 +39,10 @@
     "email": "hola@carmelocampos.com"
   },
   "dependencies": {
-    "@libsql/client": "^0.15.2",
-    "drizzle-orm": "^0.41.0",
+    "@libsql/client": "^0.15.7",
+    "drizzle-orm": "^0.43.1",
     "uuid": "^11.1.0",
-    "zod": "^3.24.2"
+    "zod": "^3.25.20"
   },
   "repository": {
     "type": "git",
