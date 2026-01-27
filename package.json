@@ -29,10 +29,10 @@
     "db:studio": "drizzle-kit studio"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.31.4",
-    "prettier": "^3.6.2",
-    "tsup": "^8.5.0",
-    "typescript": "^5.9.2"
+    "drizzle-kit": "^0.31.8",
+    "prettier": "^3.8.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   },
   "author": {
     "name": "CarmeloCampos",
