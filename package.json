@@ -29,8 +29,8 @@
     "db:studio": "drizzle-kit studio"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.31.8",
-    "prettier": "^3.8.1",
+    "drizzle-kit": "^0.31.10",
+    "prettier": "^3.8.2",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   },
