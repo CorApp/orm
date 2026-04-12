@@ -20,6 +20,7 @@ export const products = sqliteTable(
     name: text().notNull(),
     photo: text().notNull(),
     code: text().notNull(),
+    code_meta: text(),
     category_id: text()
       .notNull()
       .references(() => categories.id),
