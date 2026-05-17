@@ -28,6 +28,7 @@ import { vehicles, vehiclesRelations } from "@/db/vehicles";
 import { shorts } from "@/db/shorts";
 import { placesBanned } from "@/db/places-banned";
 import { messages, messagesRelations } from "@/db/messages";
+import { templates } from "@/db/templates";
 
 export {
   // User
@@ -71,4 +72,5 @@ export {
   // Messages
   messages,
   messagesRelations,
+  templates,
 };
