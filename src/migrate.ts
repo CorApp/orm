@@ -39,6 +39,17 @@ async function migrate() {
     CREATE INDEX IF NOT EXISTS templates_id_index ON templates(id)
   `);
 
+  await turso.execute(`
+    CREATE TABLE IF NOT EXISTS settings (
+      key TEXT PRIMARY KEY,
+      value TEXT NOT NULL
+    )
+  `);
+
+  await turso.execute(`
+    INSERT OR IGNORE INTO settings (key, value) VALUES ('human_mode', 'false')
+  `);
+
   console.log("✅ Migración exitosa");
   process.exit(0);
 }
