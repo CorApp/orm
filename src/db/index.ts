@@ -29,6 +29,7 @@ import { shorts } from "@/db/shorts";
 import { placesBanned } from "@/db/places-banned";
 import { messages, messagesRelations } from "@/db/messages";
 import { templates } from "@/db/templates";
+import { settings } from "@/db/settings";
 
 export {
   // User
@@ -73,4 +74,5 @@ export {
   messages,
   messagesRelations,
   templates,
+  settings,
 };
