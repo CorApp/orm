@@ -1,7 +1,7 @@
 {
   "name": "@corapp/orm",
   "description": "ORM for the database in TursoTech Drizzle",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -26,7 +26,8 @@
     "format": "prettier --write .",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "migrate:saas": "bun migrate-saas.ts"
   },
   "devDependencies": {
     "drizzle-kit": "^0.31.10",

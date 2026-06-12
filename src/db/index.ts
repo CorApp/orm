@@ -30,6 +30,18 @@ import { placesBanned } from "@/db/places-banned";
 import { messages, messagesRelations } from "@/db/messages";
 import { templates } from "@/db/templates";
 import { settings } from "@/db/settings";
+import {
+  plans,
+  tenants,
+  tenantsRelations,
+  whatsapp_numbers,
+  whatsappNumbersRelations,
+  tenant_locations,
+  billing,
+  billingRelations,
+  onboarding,
+  onboardingRelations,
+} from "@/db/tenants";
 
 export {
   // User
@@ -75,4 +87,15 @@ export {
   messagesRelations,
   templates,
   settings,
+  // SaaS
+  plans,
+  tenants,
+  tenantsRelations,
+  whatsapp_numbers,
+  whatsappNumbersRelations,
+  tenant_locations,
+  billing,
+  billingRelations,
+  onboarding,
+  onboardingRelations,
 };
