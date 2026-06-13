@@ -1,7 +1,7 @@
 {
   "name": "@corapp/orm",
   "description": "ORM for the database in TursoTech Drizzle",
-  "version": "2.2.7",
+  "version": "2.2.8",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
