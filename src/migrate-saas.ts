@@ -47,6 +47,10 @@ async function migrate() {
       db_name TEXT,
       billing_day INTEGER DEFAULT 1,
       total_orders INTEGER NOT NULL DEFAULT 0,
+      owner_password TEXT,
+      verified INTEGER DEFAULT 0,
+      verification_code TEXT,
+      verification_expires INTEGER,
       created_at INTEGER NOT NULL,
       updated_at INTEGER NOT NULL
     )
@@ -134,50 +138,56 @@ async function migrate() {
     CREATE INDEX IF NOT EXISTS onboarding_tenant_index ON onboarding(tenant_id)
   `);
 
+  // ✅ Migración de columnas auth en tenants existentes
+  const authColumns = [
+    `ALTER TABLE tenants ADD COLUMN owner_password TEXT`,
+    `ALTER TABLE tenants ADD COLUMN verified INTEGER DEFAULT 0`,
+    `ALTER TABLE tenants ADD COLUMN verification_code TEXT`,
+    `ALTER TABLE tenants ADD COLUMN verification_expires INTEGER`,
+  ];
+
+  for (const sql of authColumns) {
+    try {
+      await turso.execute(sql);
+      console.log(`✅ Columna agregada: ${sql.split("COLUMN ")[1]}`);
+    } catch {
+      // Columna ya existe — ignorar
+    }
+  }
+
   // Datos iniciales — planes
   const now = Math.floor(Date.now() / 1000);
 
   await turso.execute(`
     INSERT OR IGNORE INTO plans (id, name, price_cop, max_orders, features, active, created_at)
     VALUES (
-      'plan-starter',
-      'Starter',
-      150000,
-      200,
+      'plan-starter', 'Starter', 150000, 200,
       '["1 número WhatsApp","Hasta 200 órdenes/mes","Catálogo básico","Soporte por chat"]',
-      1,
-      ${now}
+      1, ${now}
     )
   `);
 
   await turso.execute(`
     INSERT OR IGNORE INTO plans (id, name, price_cop, max_orders, features, active, created_at)
     VALUES (
-      'plan-pro',
-      'Pro',
-      350000,
-      800,
+      'plan-pro', 'Pro', 350000, 800,
       '["1 número WhatsApp","Hasta 800 órdenes/mes","ML personalizado","Soporte prioritario"]',
-      1,
-      ${now}
+      1, ${now}
     )
   `);
 
   await turso.execute(`
     INSERT OR IGNORE INTO plans (id, name, price_cop, max_orders, features, active, created_at)
     VALUES (
-      'plan-business',
-      'Business',
-      700000,
-      -1,
+      'plan-business', 'Business', 700000, -1,
       '["1 número WhatsApp","Órdenes ilimitadas","ML personalizado","Soporte 24/7","Panel analytics"]',
-      1,
-      ${now}
+      1, ${now}
     )
   `);
 
   console.log("✅ Migración SaaS exitosa");
   console.log("   Tablas: plans, tenants, whatsapp_numbers, tenant_locations, billing, onboarding");
+  console.log("   Auth: owner_password, verified, verification_code, verification_expires");
   console.log("   Planes: Starter $150.000 | Pro $350.000 | Business $700.000");
   process.exit(0);
 }
