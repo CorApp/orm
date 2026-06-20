@@ -9,9 +9,9 @@ export const plans = sqliteTable(
   "plans",
   {
     id: text().primaryKey().$default(v4),
-    name: text().notNull(),           // "starter" | "pro" | "business"
-    price_cop: integer().notNull(),   // precio en COP
-    max_orders: integer().notNull(),  // -1 = ilimitado
+    name: text().notNull(),
+    price_cop: integer().notNull(),
+    max_orders: integer().notNull(),
     features: text().notNull().default(JSON.stringify([])),
     active: integer().notNull().default(1),
     created_at: integer().notNull().$default(() => Math.floor(Date.now() / 1000)),
@@ -32,14 +32,14 @@ export const tenants = sqliteTable(
     owner_email: text().notNull(),
     owner_phone: text().notNull(),
     // Tipo de negocio y modalidad
-    business_type: text().notNull(), // "frutas_verduras" | "muebles" | "ropa" | "restaurante" | "otro"
+    business_type: text().notNull(),
     business_type_custom: text(),
-    delivery_type: text().notNull(), // "domicilio" | "punto_fisico" | "hibrido"
+    delivery_type: text().notNull(),
     // Bot
     bot_name: text().notNull().default("Vecinito"),
     bot_greeting: text(),
     // Estado y plan
-    status: text().notNull().default("trial"), // "trial" | "active" | "suspended" | "cancelled"
+    status: text().notNull().default("trial"),
     plan_id: text().references(() => plans.id),
     plan_expires: integer(),
     trial_ends: integer(),
@@ -55,6 +55,11 @@ export const tenants = sqliteTable(
     // Facturación
     billing_day: integer().default(1),
     total_orders: integer().notNull().default(0),
+    // ✅ Auth — nuevas columnas
+    owner_password: text(),
+    verified: integer().default(0),
+    verification_code: text(),
+    verification_expires: integer(),
     // Timestamps
     created_at: integer().notNull().$default(() => Math.floor(Date.now() / 1000)),
     updated_at: integer().notNull().$default(() => Math.floor(Date.now() / 1000)),
@@ -76,7 +81,7 @@ export const whatsapp_numbers = sqliteTable(
     phone_number: text().notNull(),
     phone_number_id: text().notNull(),
     display_name: text().notNull(),
-    status: text().notNull().default("available"), // "available" | "assigned" | "suspended"
+    status: text().notNull().default("available"),
     tenant_id: text().references(() => tenants.id),
     assigned_at: integer(),
     created_at: integer().notNull().$default(() => Math.floor(Date.now() / 1000)),
@@ -112,7 +117,7 @@ export const billing = sqliteTable(
     tenant_id: text().notNull().references(() => tenants.id),
     plan_id: text().notNull().references(() => plans.id),
     amount_cop: integer().notNull(),
-    status: text().notNull().default("pending"), // "pending" | "paid" | "failed"
+    status: text().notNull().default("pending"),
     period_start: integer().notNull(),
     period_end: integer().notNull(),
     paid_at: integer(),
@@ -130,12 +135,12 @@ export const onboarding = sqliteTable(
     id: text().primaryKey().$default(v4),
     tenant_id: text().notNull().references(() => tenants.id),
     step: integer().notNull().default(1),
-    step_business: integer().notNull().default(0),   // info del negocio
-    step_delivery: integer().notNull().default(0),   // zonas y días
-    step_catalog: integer().notNull().default(0),    // productos
-    step_bot: integer().notNull().default(0),        // nombre y personalidad
-    step_number: integer().notNull().default(0),     // número WhatsApp
-    step_test: integer().notNull().default(0),       // prueba del flujo
+    step_business: integer().notNull().default(0),
+    step_delivery: integer().notNull().default(0),
+    step_catalog: integer().notNull().default(0),
+    step_bot: integer().notNull().default(0),
+    step_number: integer().notNull().default(0),
+    step_test: integer().notNull().default(0),
     completed: integer().notNull().default(0),
     completed_at: integer(),
     created_at: integer().notNull().$default(() => Math.floor(Date.now() / 1000)),
