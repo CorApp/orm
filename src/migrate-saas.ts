@@ -73,6 +73,7 @@ async function migrate() {
       display_name TEXT NOT NULL,
       status TEXT NOT NULL DEFAULT 'available',
       tenant_id TEXT REFERENCES tenants(id),
+      catalog_id_meta TEXT,
       assigned_at INTEGER,
       created_at INTEGER NOT NULL
     )
@@ -139,6 +140,12 @@ async function migrate() {
   `);
 
   // ✅ Migración de columnas auth en tenants existentes
+  // Migración catalog_id_meta en whatsapp_numbers
+  try {
+    await turso.execute(`ALTER TABLE whatsapp_numbers ADD COLUMN catalog_id_meta TEXT`);
+    console.log("✅ Columna catalog_id_meta agregada a whatsapp_numbers");
+  } catch { /* ya existe */ }
+
   const authColumns = [
     `ALTER TABLE tenants ADD COLUMN owner_password TEXT`,
     `ALTER TABLE tenants ADD COLUMN verified INTEGER DEFAULT 0`,
