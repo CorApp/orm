@@ -83,6 +83,7 @@ export const whatsapp_numbers = sqliteTable(
     display_name: text().notNull(),
     status: text().notNull().default("available"),
     tenant_id: text().references(() => tenants.id),
+    catalog_id_meta: text(),
     assigned_at: integer(),
     created_at: integer().notNull().$default(() => Math.floor(Date.now() / 1000)),
   },
