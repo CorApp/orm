@@ -21,6 +21,7 @@ export const products = sqliteTable(
     photo: text().notNull(),
     code: text().notNull(),
     code_meta: text(),
+    meta_product_id: text(),
     category_id: text()
       .notNull()
       .references(() => categories.id),
