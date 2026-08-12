@@ -71,6 +71,7 @@ export const tenants = sqliteTable(
   ],
 );
 
+
 // ============================================================
 // POOL DE NÚMEROS WHATSAPP
 // ============================================================
@@ -147,6 +148,24 @@ export const onboarding = sqliteTable(
     created_at: integer().notNull().$default(() => Math.floor(Date.now() / 1000)),
   },
   (t) => [index("onboarding_tenant_index").on(t.tenant_id)],
+);
+
+// ============================================================
+// DEMO EN VIVO — prospectos probando el bot de Vendelo por WhatsApp
+// sin registrarse (bot de soporte). No se relaciona con tenants —
+// son prospectos, no negocios registrados todavía. phone es la
+// llave primaria porque ya existe así en la tabla real en Turso.
+// ============================================================
+export const vendelo_demo_sessions = sqliteTable(
+  "vendelo_demo_sessions",
+  {
+    phone: text().primaryKey(),
+    demo_mode: integer().notNull().default(0),
+    demo_count: integer().notNull().default(0),
+    created_at: integer().notNull().$default(() => Math.floor(Date.now() / 1000)),
+    updated_at: integer().notNull().$default(() => Math.floor(Date.now() / 1000)),
+  },
+  (t) => [index("vendelo_demo_sessions_index").on(t.phone)],
 );
 
 // ============================================================
