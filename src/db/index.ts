@@ -41,6 +41,7 @@ import {
   billingRelations,
   onboarding,
   onboardingRelations,
+  vendelo_demo_sessions,
 } from "@/db/tenants";
 
 export {
@@ -98,4 +99,6 @@ export {
   billingRelations,
   onboarding,
   onboardingRelations,
+  // Demo en vivo — prospectos probando Vendelo sin registrarse
+  vendelo_demo_sessions,
 };
