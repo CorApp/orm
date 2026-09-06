@@ -20,6 +20,7 @@ export const orders = sqliteTable(
       .notNull()
       .$default(() => new Date().toISOString()),
     driver_id: text().references(() => users.id),
+    order_number: text(),
   },
   (t) => [index("orders_index").on(t.id)],
 );

@@ -16,6 +16,22 @@ const TENANT_PRODUCTS_COLUMNS = [
   `ALTER TABLE tenant_products ADD COLUMN media_2_url TEXT`,
   `ALTER TABLE tenant_products ADD COLUMN media_2_type TEXT`,
   `ALTER TABLE tenant_products ADD COLUMN media_text TEXT`,
+  // Nuevas de esta tarea:
+  `ALTER TABLE tenant_products ADD COLUMN media_2_text TEXT`,
+  `ALTER TABLE tenant_products ADD COLUMN media_3_url TEXT`,
+  `ALTER TABLE tenant_products ADD COLUMN media_3_type TEXT`,
+  `ALTER TABLE tenant_products ADD COLUMN media_3_text TEXT`,
+  `ALTER TABLE tenant_products ADD COLUMN media_4_url TEXT`,
+  `ALTER TABLE tenant_products ADD COLUMN media_4_type TEXT`,
+  `ALTER TABLE tenant_products ADD COLUMN media_4_text TEXT`,
+  `ALTER TABLE tenant_products ADD COLUMN media_5_url TEXT`,
+  `ALTER TABLE tenant_products ADD COLUMN media_5_type TEXT`,
+  `ALTER TABLE tenant_products ADD COLUMN media_5_text TEXT`,
+  `ALTER TABLE tenant_products ADD COLUMN media_6_url TEXT`,
+  `ALTER TABLE tenant_products ADD COLUMN media_6_type TEXT`,
+  `ALTER TABLE tenant_products ADD COLUMN media_6_text TEXT`,
+  // Consecutivo de órdenes
+  `ALTER TABLE orders ADD COLUMN order_number TEXT`,
 ];
 
 async function migrateAllTenants() {
